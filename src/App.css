@@ -1,0 +1,13 @@
+.App{
+    background-image: url("file:///C:/Users/IT%20LINKS/Downloads/wthr.jpg");
+    height: 625px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+p{
+    font-size: 30px;
+    font-weight: bold;
+    
+}
