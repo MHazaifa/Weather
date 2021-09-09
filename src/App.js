@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-// import axios from "axios";
+// import Axios from "axios";
 import "./App.css";
 
 
 
 
 function App() {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("Lahore");
   const [weather, setWeather] = useState("");
   
   
@@ -26,10 +26,10 @@ function App() {
         // setWeather((response.data.main.feels_like -273.15 ).toFixed(2));
       //  setWeather(response.data(weather));
       setWeather({
-        feel: response.data.feels_like,
-        temp: response.data.main.temp,
-        mx: response.data.main.temp_max,
-        mn:response.data.main.temp_min,
+        feel: response.data.feels_like ,
+        temp: ((response.data.main.temp-273.15 ).toFixed(0)),
+        mx: ((response.data.main.temp_max-273.15 ).toFixed(0)),
+        mn:((response.data.main.temp_min-273.15 ).toFixed(0)),
         humidity: response.data.main.humidity,
         press: response.data.main.pressure,
         time : response.data.sys.timezone,
@@ -47,18 +47,19 @@ function App() {
   };
      
   return (
-    <div className="text-center App">
+    <div className="text-center text-white App">
       
-      <h1 className= "p-5">Weather App</h1>
+      <h1 className= "p-5 ">Weather App</h1>
       <form onSubmit={weatherCity} className="">
-        <input className="bg-dark text-white border" type="text"value={city} onChange={(e) => setCity(e.target.value)}/>
+        <input className="bg-dark text-white border" placeholder="Enter City Name" type="text"value={city} onChange={(e) => setCity(e.target.value)}/>
         <br/>
         <input className="m-2 border " type="submit" value="Search" />
       </form>
-      
-        <p className=" text-dark ">Current Location : {city}</p>
-        <p className=" text-dark ">Tem : {weather.temp} | Humidity : {weather.humidity}</p>
-        <p className=" text-dark ">Max : {weather.mx} | Min : {weather.mn}</p>
+        <div className="border border-secondary rounded-pill data text-white">
+        <p className="  "><i class="fas fa-street-view  loc"></i>Current Location : {city}</p>
+        <p className="  "><i class="fas fa-cloud-sun loc"></i>Tem : {weather.temp} °C | Humidity : {weather.humidity}</p>
+        <p className="  ">Max : {weather.mx} °C | Min : {weather.mn} °C</p>
+        </div>
       
     </div>
   );
